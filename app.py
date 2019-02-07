@@ -89,7 +89,9 @@ def get_message(receivedText = "No text"):
     if blocks[0].upper() in functionAction:
         result = functionAction[blocks[0].upper()](blocks[1:])
     else:
-        result = """ERROR:\nUNKNOWN COMMAND '{0}'""".format(receivedText)
+        result = """ERROR:
+Unknown command:'{0}'
+Type 'LIST-FUNC' for a full list of possible commands""".format(receivedText)
     return result
 
 #uses PyMessenger to send response to user
