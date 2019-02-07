@@ -1,4 +1,3 @@
-  
 #Python libraries that we need to import for our bot
 import os
 from datetime import datetime
@@ -23,9 +22,9 @@ functionAction = {
 	"LIST-DATA" : "Will list all data"
 }
 def listFunc(data):
-	result = "---DEBUG---"
+    result = "---DEBUG---"
     for function in functionDescription:
-		result += "\n" + function + functionDescription[function]
+        result += "\n" + function + functionDescription[function]
 	return resuly
 	
 
