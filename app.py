@@ -13,14 +13,21 @@ bot = Bot(ACCESS_TOKEN)
 data = [1,2,3,4,5]
 functionDescription = {
 	"LIST-ALL" : "Will list all data and functions",
-	"LIST-FUNC : "Will list all functions",
-	"LIST-DATA : "Will list all data"
+	"LIST-FUNC" : "Will list all functions",
+	"LIST-DATA" : "Will list all data"
 }
+
 functionAction = {
 	"LIST-ALL" : "Will list all data and functions",
-	"LIST-FUNC : "Will list all functions",
-	"LIST-DATA : "Will list all data"
+	"LIST-FUNC" : listFunc,
+	"LIST-DATA" : "Will list all data"
 }
+def listFunc(data):
+	result = "---DEBUG---"
+    for function in functionDescription:
+		result += "\n" + function + functionDescription[function]
+	return resuly
+	
 
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
@@ -59,10 +66,8 @@ def verify_fb_token(token_sent):
 
 def get_message(receivedText = "No text"):
     result = ("Received '{0}' at {1}").format(receivedText, str(datetime.now()))
-    if receivedText == "DEBUG":
-        result = "---DEBUG---"
-        for function in functionDescription:
-            result += "\n" + function + functionDescription[function]
+    if receivedText in functionAction:
+		result = functionAction[receivedText]("DATA")
     return result
 
 #uses PyMessenger to send response to user
