@@ -10,6 +10,8 @@ ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 bot = Bot(ACCESS_TOKEN)
 
+data = [1,2,3,4,5]
+
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
@@ -46,7 +48,12 @@ def verify_fb_token(token_sent):
     return 'Invalid verification token'
 
 def get_message(receivedText = "No text"):
-    return ("Received '{0}' at {1}").format(receivedText, str(datetime.now()))
+    result = ("Received '{0}' at {1}").format(receivedText, str(datetime.now()))
+    if receivedText == "--DEBUG":
+        result = "---DEBUG---"
+        for item in data:
+            result += str(item)
+    return result
 
 #uses PyMessenger to send response to user
 def send_message(recipient_id, response):
