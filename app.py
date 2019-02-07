@@ -25,7 +25,7 @@ def listFunc(data):
     result = "---DEBUG---"
     for function in functionDescription:
         result += "\n" + function + functionDescription[function]
-	return resuly
+    return result
 	
 
 #We will receive messages that Facebook sends our bot at this endpoint 
@@ -66,7 +66,7 @@ def verify_fb_token(token_sent):
 def get_message(receivedText = "No text"):
     result = ("Received '{0}' at {1}").format(receivedText, str(datetime.now()))
     if receivedText in functionAction:
-		result = functionAction[receivedText]("DATA")
+        result = functionAction[receivedText]("DATA")
     return result
 
 #uses PyMessenger to send response to user
