@@ -48,8 +48,9 @@ def verify_fb_token(token_sent):
     return 'Invalid verification token'
 
 def get_message(receivedText = "No text"):
-    result = ("Received '{0}' at {1}").format(receivedText, str(datetime.now()))
-    if receivedText == "--DEBUG":
+    result = ("""FUNCTION:
+    Received '{0}' at {1}""").format(receivedText, str(datetime.now()))
+    if receivedText == "DEBUG":
         result = "---DEBUG---"
         for item in data:
             result += str(item)
