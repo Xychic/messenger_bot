@@ -1,4 +1,5 @@
 from datetime import datetime
+from random import randint
 
 data = [1,2,3,4,5]
 functionDescription = {
@@ -6,7 +7,8 @@ functionDescription = {
 	"LIST-FUNC" : "Will list all functions",
 	"LIST-DATA" : "Will list all data",
         "ECHO" : "Will repeat the message back",
-        "REPEAT" : "Will repeat commands"
+        "REPEAT" : "Will repeat commands",
+        "RANDINT" : "Generates a random number"
 }
 
 def listAll(inputData):
@@ -39,17 +41,21 @@ Unknown command:'{0}'
 Type 'LIST-FUNC' for a full list of possible commands""".format(" ".join(inputData))
     try:
         repeats = int(inputData[-1])
+        inputData = inputData[:-1]
         if inputData[0].upper() in functionAction:
             result = ""
             for i in range(repeats):
                 if i != 0:
                     result += "\n"
-                result += functionAction[inputData[0].upper()](inputData[1:-1])
-    except:
+                result += functionAction[inputData[0].upper()](inputData[1:])
+    except Exception as e:
         result = """ERROR:
 INVALID ARGUMENT:'{0}'
 EXPECTED "FUNCTION" "INPUT" "REPEATS" """.format(" ".join(inputData))
     return result
+
+def random(inputData):
+    return str(randint(0,1000))
         
 
 functionAction = {
@@ -57,5 +63,6 @@ functionAction = {
 	"LIST-FUNC" : listFunc,
 	"LIST-DATA" : listData,
         "ECHO" : echo,
-        "REPEAT" : repeat
+        "REPEAT" : repeat,
+        "RANDINT" : random
 }
