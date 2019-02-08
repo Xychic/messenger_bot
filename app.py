@@ -49,6 +49,7 @@ functionAction = {
         "ECHO" : echo
 }
 
+
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
